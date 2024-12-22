@@ -1,6 +1,6 @@
 __pycache__
 .venv
 
-./data/FER2013Test/*.png
-./data/FER2013Train/*.png
-./data/FER2013Valid/*.png
+data/FER2013Test/*.png
+data/FER2013Train/*.png
+data/FER2013Valid/*.png
