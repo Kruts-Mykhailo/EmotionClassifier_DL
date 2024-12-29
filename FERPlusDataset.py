@@ -2,9 +2,10 @@ import pandas as pd
 import torch
 from torch.utils.data import Dataset
 from PIL import Image
+import random
 
 class FERPlusDataset(Dataset):
-    def __init__(self, image_dir, label_csv, transform=None, mode="majority", nf_threshold=0, unknown_threshold=0):
+    def __init__(self, image_dir, label_csv, transform, aug_transform, mode="majority", nf_threshold=0, unknown_threshold=0):
         """
         Args:
             image_dir (str): Path to the directory containing images.
@@ -19,6 +20,7 @@ class FERPlusDataset(Dataset):
         self.mode = mode
         self.nf_threshold = nf_threshold
         self.unknown_threshold = unknown_threshold
+        self.aug_transform = aug_transform
 
         # Define column names for the CSV
         columns = [
@@ -46,7 +48,10 @@ class FERPlusDataset(Dataset):
         img_path = f"{self.image_dir}/{img_name}"
         image = Image.open(img_path).convert("RGB")
         
-        if self.transform:
+        
+        if random.random() < 0.5 and self.aug_transform:  # 50% chance to apply augmentation
+            image = self.aug_transform(image)
+        else:
             image = self.transform(image)
 
         # Process label
@@ -54,11 +59,7 @@ class FERPlusDataset(Dataset):
         
         if self.mode == "majority":
             label = torch.tensor(votes.argmax(), dtype=torch.long)
-        elif self.mode == "probabilistic":
-            label = torch.tensor(votes / votes.sum(), dtype=torch.float32)
-        elif self.mode == "multi_target":
-            label = torch.tensor(votes, dtype=torch.float32)
         else:
-            raise ValueError("Invalid mode. Choose 'majority', 'probabilistic', or 'multi_target'.")
+            raise ValueError("Invalid mode. Choose 'majority'.")
         
         return image, label
