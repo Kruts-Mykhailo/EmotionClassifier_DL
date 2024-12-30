@@ -8,3 +8,4 @@ data/FER2013Valid/*.png
 checkpoints/
 runs/
 models/
+torchlogs/
