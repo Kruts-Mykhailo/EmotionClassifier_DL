@@ -71,6 +71,9 @@ tensorboard --log_dir=./runs
 
 ## Methodology
 
+
+File containing main CNN implementation: [CNN_Default.ipynb](./CNN_Default.ipynb)
+
 #### Augmentations
 
 When the Dataset is loaded every image has a 50% chance of being augmented. Therefore, each run contains a different set of transformed and original images.
