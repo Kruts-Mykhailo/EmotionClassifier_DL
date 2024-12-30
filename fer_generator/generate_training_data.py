@@ -53,6 +53,9 @@ def main(base_folder, fer_path, ferplus_path):
             ferplus_row = ferplus_entries[index]
             file_name = ferplus_row[1].strip()
             if len(file_name) > 0:
+                if len(row) < 2:
+                    print(f"Skipping malformed row: {row}")
+                    continue
                 image = str_to_image(row[1])
                 image_path = os.path.join(base_folder, folder_names[row[2]], file_name)
                 image.save(image_path, compress_level=0)                
