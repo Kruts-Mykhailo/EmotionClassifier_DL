@@ -85,12 +85,72 @@ Augmentations applied:
 - RandomResizedCrop: Crops a random portion (90-100%) and resizes to 40×40.
 - RandomAffine: Applies rotation (±10 degrees) and translation (10% shift).
 
-After all augmentations we `resize back` to original sizing of `48x48` and `Normalize` the images
+After all augmentations we `resize back` to original sizing of `48x48` and `Normalize` the images.
 
 #### Model architecture
 
+The architecture consists of 5 sequential convolution blocks and 1 dense layer.
+
+![CNN_architecture](./data/CNN_ARCHITECTURE.png)
+
+Sequential block architecture: 
+
+![CONV_BLOCK](./data/CONV_BLOCK.png)
+
+Dense layer architecture:
+
+![DENSE_LAYER](./data/DENSE_LAYER.png)
+
 #### Optimization
 
+Regularization techniques used:
+
+* Dropout layer
+* Early stopping    (latest used patience: 8)
+* L2 regularization (latest used decay: 1e-7)
+
+Hyperparameters adjusted:
+
+* Learning rate
+* Dropout rate
+* Patience for early stopping 
+* Batch Size        (latest used batch size: 64)
 
 ## Findings 
+
+Latest run evaluation of model using latest architecture and hyperparameters: 
+
+```
+Test Accuracy: 0.8331
+Test Precision 0.8375
+Test Recall: 0.8331
+Test F1 score: 0.8184
+```
+
+Confusion matrix of predicted and actual emotions: 
+
+![CONF](./data/CONFUSION_MATRIX.png)
+
+What results can we derive from this matrix?
+
+**Overall Strengths**
+* The model performs well for dominant classes like Neutral, Happiness, and Surprise, showing its ability to extract and classify features for these emotions.
+* It has fewer misclassifications for the dominant classes, suggesting good generalization for these categories.
+
+**Class Imbalance:**
+* Classes like Neutral and Happiness dominate in both true positives and total predictions.
+* Rare classes like Disgust and Contempt are underrepresented, leading to poor model performance on these categories.
+
+
+**Confusion Patterns** 
+* Neutral and Sadness: These two classes are often confused, which makes sense as their visual features can overlap in certain contexts.
+* Surprise and Fear: There is notable confusion between these classes, likely due to similarities in facial expressions (e.g., wide-open eyes).
+* Sadness and Anger: These classes show some confusion, indicating the need for better feature extraction to differentiate them.
+
 ## Future recommendations
+
+1. Balanced Dataset:
+Collect more samples for rare classes or use oversampling techniques to balance the training set.
+
+2. Weighted Loss:
+Use a weighted loss function to penalize misclassifications of rare classes more heavily.
