@@ -147,6 +147,27 @@ What results can we derive from this matrix?
 * Surprise and Fear: There is notable confusion between these classes, likely due to similarities in facial expressions (e.g., wide-open eyes).
 * Sadness and Anger: These classes show some confusion, indicating the need for better feature extraction to differentiate them.
 
+
+## Implemented extensions
+
+1. Cropped and alligned images
+2. Face detectors
+3. Real time application
+
+**Prerequisities**:
+
+Run all cells in [CNNFaceDetector.ipynb](./CNNFaceDetector.ipynb) in order to generate `model_face_detector` model.
+
+Next, you can run live tracking of your emotions!
+
+Allow program to utilize your webcam.
+
+Run tracking:
+
+```
+python video_application.py
+```
+
 ## Future recommendations
 
 1. Balanced Dataset:

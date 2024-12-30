@@ -7,14 +7,15 @@ import time
 from CNN import CNN
 
 
-model_path = "models/model_>80.pth"  # Adjust to your actual path
-device = torch.device("mps")  # Change to "cuda" if you have a CUDA GPU
+model_path = "models/model_face_detector.pth"  # Adjust to your actual path
+device = torch.device("cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
+print(f"Using device: {device}")
+
 
 # If used `torch.save(model, ...)`, ensure CNN is imported or defined in scope
 model = torch.load(model_path, map_location=device)
 model.eval()
 model.to(device)
-
 
 
 cascade_path = "datasets/haarcascade_frontalface_default.xml"  # Path to the Haar Cascade XML
