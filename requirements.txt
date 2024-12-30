@@ -6,4 +6,8 @@ torchvision
 matplotlib
 scikit-learn
 seaborn
+tensorflow
+torchsummary
+opencv-python
+mtcnn
 tensorboard

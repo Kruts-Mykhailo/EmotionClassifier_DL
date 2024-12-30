@@ -1,6 +1,6 @@
 __pycache__
 .venv
-
+.idea
 data/FER2013Test/*.png
 data/FER2013Train/*.png
 data/FER2013Valid/*.png
@@ -8,3 +8,4 @@ data/FER2013Valid/*.png
 checkpoints/
 runs/
 models/
+torchlogs/
