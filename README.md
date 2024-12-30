@@ -153,9 +153,11 @@ What results can we derive from this matrix?
 
 ## Implemented extensions
 
-1. Cropped and alligned images
+1. Cropped and aligned images
 2. Face detectors
 3. Real time application
+4. Transfer Learning - We have taken a pre-trained ResNet and modified the final classification layer to fit our needs.
+5. Ensemble Methods - Takes all the models provided and uses all of them to find the best classification. (Approach: take the most frequent prediction) 
 
 **Prerequisities**:
 
