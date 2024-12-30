@@ -11,7 +11,9 @@
 Dataset used for this project:
 - FER2013+
 
-The main difference between FER2013 and FER2013+ lies in the labeling quality and data refinement
+The FER+ annotations provide a set of new labels for the standard Emotion FER dataset. In FER+, each image has been labeled by 10 crowd-sourced taggers, which provide better quality ground truth for still image emotion than the original FER labels. Having 10 taggers for each image enables researchers to estimate an emotion probability distribution per face. This allows constructing algorithms that produce statistical distributions or multi-label outputs instead of the conventional single-label output,
+
+![image](https://raw.githubusercontent.com/Microsoft/FERPlus/master/FER+vsFER.png)
 
 ## Pre-requisites
 
@@ -37,3 +39,15 @@ python fer_generator/generate_training_data.py -d ./data -fer fer_generator/fer2
 ```
 tensorboard --log_dir=./runs
 ```
+
+## Methodology
+
+#### Augmentations
+
+#### Model architecture
+
+#### Optimization
+
+
+## Findings 
+## Future recommendations
