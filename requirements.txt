@@ -6,3 +6,4 @@ torchvision
 matplotlib
 scikit-learn
 seaborn
+tensorboard
