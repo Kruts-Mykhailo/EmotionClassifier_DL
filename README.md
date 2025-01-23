@@ -1,6 +1,6 @@
 # Deep Learning Project
 
-## Authors:
+## Contributors:
 
 * Mykhailo Kruts
 * Yevhen Zinenko
